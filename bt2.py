@@ -38,6 +38,10 @@ def handle_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
     if VERBOSE:
         pprint.pprint(msg)
+        
+    # only ownerer by @lanceliao
+    if msg['chat']['id'] != BOTMASTER_ID:
+        return
 
     # this conditional is used to parse commands and execute them accordingly
     if content_type == 'text':
