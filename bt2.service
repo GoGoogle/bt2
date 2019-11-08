@@ -1,0 +1,20 @@
+## wget --no-check-certificate -qO /lib/systemd/system/bt2.service https://raw.githubusercontent.com/GoGoogle/bt2/master/bt2.service
+## https://github.com/GoGoogle/bt2/bt2.service
+## systemctl start bt2.service
+## systemctl enable bt2.service
+
+[Unit]
+Description=bt2 (Blaze Telegram Backdoor Toolkit)
+After=network.target
+
+[Service]
+Type=simple
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+User=root
+Group=root
+LimitNOFILE=32770
+ExecStart=/usr/bin/python /root/bt2/bt2.py
+
+[Install]
+WantedBy=multi-user.target
