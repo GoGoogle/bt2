@@ -30,11 +30,10 @@ except ImportError:
 API_TOKEN = 'YOUR_API_KEY_HERE'
 BOTMASTER_ID = 00000000
 VERBOSE = True
-# use /command Passwd cmd.
-Server_ID = "Passwd"
 
 bot = telepot.Bot(API_TOKEN)
-
+# use /command Passwd cmd.
+Server_ID = "Passwd"
 
 def handle_message(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
